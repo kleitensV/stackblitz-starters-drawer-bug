@@ -15,7 +15,7 @@ import { lastValueFrom } from 'rxjs';
 })
 
 @Injectable()
-export class FAppStore {
+export class AppStore {
 
   @Selector()
   public static getAppState(

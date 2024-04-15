@@ -1,15 +1,17 @@
 
 import { Injectable, Injector } from '@angular/core';
-import { Receiver } from '@ngxs-labs/emitter';
+import { EmitterAction, Receiver } from '@ngxs-labs/emitter';
 import { Selector, State, StateContext } from '@ngxs/store';
 import { produce } from 'immer';
 import { lastValueFrom } from 'rxjs';
 import { IModalState } from './modal-state';
+import * as _ld from 'lodash-es';
 
 @State<IModalState>({
   name: 'IModalState',
   defaults: {
     data: {
+      modalInputValue:''
     }
   }
 })
@@ -25,13 +27,16 @@ export class ModalStore {
   }
 
   @Receiver()
-  public static async loadUserInfo(context: StateContext<IModalState>): Promise<void> {
-// context.setState(
-      //   produce(draft => {
-      //     draft.data.userInfo = userInfo;
-      //   })
-      // );
+  public static async updateModalInputValue(context: StateContext<IModalState>,
+    action: EmitterAction<string>): Promise<void> {
+    let currentState = context.getState();
+    let inputVal = currentState.data.modalInputValue
 
+    context.setState(
+      produce(draft => {
+        draft.data.modalInputValue = inputVal ;
+      })
+    );
   }
 
 

@@ -10,6 +10,7 @@ import { IDrawerState } from './drawer-state';
   name: 'IDrawerState',
   defaults: {
     data: {
+      drawerInputValue:''
     }
   }
 })
@@ -25,12 +26,15 @@ export class DrawerStore {
   }
 
   @Receiver()
-  public static async loadUserInfo(context: StateContext<IDrawerState>): Promise<void> {
-// context.setState(
-      //   produce(draft => {
-      //     draft.data.userInfo = userInfo;
-      //   })
-      // );
+  public static async updateDrawerInputValue(context: StateContext<IDrawerState>): Promise<void> {
+    let currentState = context.getState();
+    let inputVal = currentState.data.drawerInputValue
+
+    context.setState(
+      produce(draft => {
+        draft.data.drawerInputValue = inputVal ;
+      })
+    );
 
   }
 

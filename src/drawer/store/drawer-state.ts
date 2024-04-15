@@ -1,3 +1,5 @@
 export interface IDrawerState {
-  data: {};
+  data: {
+    drawerInputValue:string;
+  };
 }

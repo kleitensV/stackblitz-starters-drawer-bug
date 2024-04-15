@@ -27,6 +27,7 @@ export class DrawerComponent extends VudDrawerComponent implements OnDestroy, On
 
   public _subs = new SubSink();
   public drawerStore$ = new Observable<any>();
+  public drawerInputValue="";
 
   constructor(private modalRef: VudDrawerRef<DrawerComponent>,
     private store: Store,
@@ -37,8 +38,8 @@ export class DrawerComponent extends VudDrawerComponent implements OnDestroy, On
   }
 
   public ngOnInit(): void {
-    this._subs.add(this.drawerStore$.subscribe((groupsTemplatesState: IDrawerState) => {
-
+    this._subs.add(this.drawerStore$.subscribe((state: IDrawerState) => {
+        this.drawerInputValue= state.data.drawerInputValue;
     }));
   }
 
@@ -47,7 +48,7 @@ export class DrawerComponent extends VudDrawerComponent implements OnDestroy, On
   }
 
   public onChangeFormName(event: any) {
-    //this.emitter.action<string>(FGroupTemplatesDrawerStore.updateFormName).emit(event);
+    this.emitter.action<string>(DrawerStore.updateDrawerInputValue).emit(event);
   }
 
 

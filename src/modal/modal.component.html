@@ -2,28 +2,31 @@
   <button type="button" class="close" (click)="onCloseDialog($event)" aria-label="Close"></button>
   <h2 class="modal-title">modal title</h2>
 </div>
-<div class="modal-body">
-  <form class="form-horizontal">
-    <div class="form-tile-box bg-primary">
-      <div class="row">
-        <div class="form-group col-md-12 mb-0">
-          <legend class="text-uppercase font-weight-bold">Group Info</legend>
+<div class="modal-body px-16">
+  <form>
+    <div class="row">
+      <div class="form-group col-md-12 mb-0" style="display: block;">
+        <div class="d-flex justify-content-between">
+          <label>modal input Namn:</label>
         </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-3 mb-0" style="display: block;">
-          <div class="d-flex justify-content-between">
-            <label>Grupp Namn:</label>
-          </div>
-          <div>
-            <input type="text" class="form-control groupName-input" [ngModel]="groupName"
-              [vudErrorTooltip]="fieldRequiredError" (ngModelChange)="onChangeName($event)" required
-              [ngModelOptions]="{standalone: true}" [placeholder]="'enter_group' |translate " [maxlength]="40">
-          </div>
+        <div>
+          <input type="text" class="form-control groupName-input" [ngModel]="modalInputValue"
+            [vudErrorTooltip]="fieldRequiredError" [ngModelOptions]="{standalone: true}"  (ngModelChange)="onChangeName($event)" required [maxlength]="40">
+
+            <vud-errors #fieldRequiredError>
+              <ng-template vudError="required">Field required</ng-template>
+            </vud-errors>
         </div>
       </div>
     </div>
   </form>
+  <button type="button" class="btn btn-default mt-8" (click)="onOpenDrawer()">
+    <span>Open drawer</span>
+  </button>
 </div>
 <div class="modal-footer d-flex">
+  
+  <button type="button" class="btn btn-default" (click)="onCloseDialog($event)">
+    <span>Close</span>
+  </button>
 </div>

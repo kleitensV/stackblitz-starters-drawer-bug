@@ -1,3 +1,5 @@
 export interface IModalState {
-  data: {};
+  data: {
+    modalInputValue:string;
+  };
 }
