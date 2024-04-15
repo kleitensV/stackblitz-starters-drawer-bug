@@ -1,0 +1,18 @@
+<div class="drawer-header">
+    <h4 id="drawer-title">drawer title</h4>
+  </div>
+  <div id="drawer-content" class="drawer-body pb-8">
+    <vud-errors #fieldRequiredError>
+      <ng-template vudError="required">Field required</ng-template>
+    </vud-errors>
+    <div class="row">
+      <div class="form-group col-md-12 mb-0" style="display: block;">
+        <label>ForhandlingsUndeslag:</label>
+        <input type="text" class="form-control name-input-drawer" [ngModel]="formName" required
+          [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeFormName($event)" required
+          [vudErrorTooltip]="fieldRequiredError">
+      </div>
+    </div>
+  </div>
+  <div class="drawer-footer">
+  </div>

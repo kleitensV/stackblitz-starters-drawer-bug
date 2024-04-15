@@ -22,6 +22,7 @@
     "@vismaux/ngx-vud": "13.8.1",
     "@vismaux/vud": "1.7.7",
     "@vismaux/vud-icons": "1.7.7",
+    "subsink": "^1.0.2",
     "immer": "^10.0.2",
     "rxjs": "^7.8.1",
     "tslib": "^2.5.0",

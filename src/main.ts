@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { VudButtonModule, VudIconModule } from '@vismaux/ngx-vud';
 import 'zone.js';
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports:[
+    VudButtonModule
+  ],
   template: `
     <h1>Hello from {{ name }}!</h1>
-    <a target="_blank" href="https://angular.dev/overview">
-      Learn more about Angular
-    </a>
+    <button vudButton> Add new</button>
   `,
 })
 export class App {
