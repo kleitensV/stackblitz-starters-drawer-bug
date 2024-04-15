@@ -1,6 +1,6 @@
 import { Component, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication, provideProtractorTestingSupport } from '@angular/platform-browser';
-import { VudButtonModule, VudDrawerService, VudIconModule, VudModalService } from '@vismaux/ngx-vud';
+import { VudButtonModule, VudDrawerService, VudIconModule, VudModalService, VudSelectComponent, VudSelectModule } from '@vismaux/ngx-vud';
 import 'zone.js';
 import { ModalService } from './services/modal.service';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -14,19 +14,26 @@ import { NgxsEmitPluginModule } from '@ngxs-labs/emitter';
 import { ModalStore } from './modal/store/modal-store';
 import { DrawerStore } from './drawer/store/drawer-store';
 
+import { provideAnimations } from '@angular/platform-browser/animations';
+
 @Component({
   selector: 'app-root',
   standalone: true,
   imports:[
+    VudSelectModule,
     VudButtonModule
   ],
   template: `
+    <div class="bg-default container">
     <h1>Hello from {{ name }}!</h1>
     <button vudButton (click)="openModal()"> Add new</button>
+    <vud-select [items]="items" labelForId="basic-select" placeholder="Start typing.."></vud-select>
+    </div>
   `,
 })
 export class App {
   name = 'Angular';
+  items=['item1','item2','item3'];
   constructor(
     private modalService:ModalService){
 
@@ -42,7 +49,7 @@ export class App {
 bootstrapApplication(App, {
   providers: [
     provideProtractorTestingSupport(),
-    // provideAnimations(),
+    provideAnimations(),
     provideHttpClient(
       withInterceptorsFromDi(),
     ),
@@ -66,7 +73,4 @@ bootstrapApplication(App, {
     )
   ]
 })
-function provideAnimations(): import("@angular/core").Provider | import("@angular/core").EnvironmentProviders {
-  throw new Error('Function not implemented.');
-}
 

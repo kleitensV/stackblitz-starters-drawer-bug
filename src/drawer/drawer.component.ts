@@ -28,7 +28,7 @@ export class DrawerComponent extends VudDrawerComponent implements OnDestroy, On
   public _subs = new SubSink();
   public drawerStore$ = new Observable<any>();
   public drawerInputValue="";
-
+  public items=['item1','item2','item3'];
   constructor(private modalRef: VudDrawerRef<DrawerComponent>,
     private store: Store,
     private emitter: EmitterService) {
@@ -49,6 +49,9 @@ export class DrawerComponent extends VudDrawerComponent implements OnDestroy, On
 
   public onChangeDrawerInputValue(event: any) {
     this.emitter.action<string>(DrawerStore.updateDrawerInputValue).emit(event);
+  }
+  public onChangeSelect(event: any){
+
   }
 
 
