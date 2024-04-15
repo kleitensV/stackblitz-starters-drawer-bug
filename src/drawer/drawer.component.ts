@@ -47,7 +47,7 @@ export class DrawerComponent extends VudDrawerComponent implements OnDestroy, On
     this.modalRef.close();
   }
 
-  public onChangeFormName(event: any) {
+  public onChangeDrawerInputValue(event: any) {
     this.emitter.action<string>(DrawerStore.updateDrawerInputValue).emit(event);
   }
 

@@ -1,6 +1,6 @@
 
 import { Injectable, Injector } from '@angular/core';
-import { Receiver } from '@ngxs-labs/emitter';
+import { EmitterAction, Receiver } from '@ngxs-labs/emitter';
 import { Selector, State, StateContext } from '@ngxs/store';
 import { produce } from 'immer';
 import { lastValueFrom } from 'rxjs';
@@ -26,15 +26,24 @@ export class DrawerStore {
   }
 
   @Receiver()
-  public static async updateDrawerInputValue(context: StateContext<IDrawerState>): Promise<void> {
+  public static async updateDrawerInputValue(context: StateContext<IDrawerState>,
+    action: EmitterAction<string>): Promise<void> {
     let currentState = context.getState();
     let inputVal = currentState.data.drawerInputValue
 
-    context.setState(
-      produce(draft => {
-        draft.data.drawerInputValue = inputVal ;
-      })
-    );
+    // context.setState(
+    //   produce(draft => {
+    //     draft.data.drawerInputValue = inputVal ;
+    //   })
+    // );
+    // console.log("inputVal",inputVal);
+    context.patchState({
+      data: {
+        ...currentState.data,
+        drawerInputValue: action.payload
+      }
+    });
+    console.log("inputVal",inputVal);
 
   }
 
