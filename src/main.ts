@@ -1,6 +1,6 @@
 import { Component, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication, provideProtractorTestingSupport } from '@angular/platform-browser';
-import { VudButtonModule, VudDrawerService, VudIconModule, VudModalService, VudSelectComponent, VudSelectModule } from '@vismaux/ngx-vud';
+import { VudButtonModule, VudDrawerService, VudErrorTooltipModule, VudIconModule, VudModalService, VudSelectComponent, VudSelectModule, VudTooltipModule } from '@vismaux/ngx-vud';
 import 'zone.js';
 import { ModalService } from './services/modal.service';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -21,7 +21,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
   standalone: true,
   imports:[
     VudSelectModule,
-    VudButtonModule
+    VudButtonModule,
+    VudErrorTooltipModule,
+    VudTooltipModule
   ],
   template: `
     <div class="bg-default container">

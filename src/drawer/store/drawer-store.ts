@@ -10,7 +10,8 @@ import { IDrawerState } from './drawer-state';
   name: 'IDrawerState',
   defaults: {
     data: {
-      drawerInputValue:''
+      drawerInputValue:'',
+      selectItem:null
     }
   }
 })
@@ -31,22 +32,29 @@ export class DrawerStore {
     let currentState = context.getState();
     let inputVal = currentState.data.drawerInputValue
 
-    // context.setState(
-    //   produce(draft => {
-    //     draft.data.drawerInputValue = inputVal ;
-    //   })
-    // );
-    // console.log("inputVal",inputVal);
+    context.setState(
+      produce(draft => {
+        draft.data.drawerInputValue = inputVal ;
+      })
+    );
+    console.log("inputVal",inputVal);
+
+  }
+
+  @Receiver()
+  public static async updateDrawerSelectValue(context: StateContext<IDrawerState>,
+    action: EmitterAction<string|null>): Promise<void> {
+    let currentState = context.getState();
+    let inputVal = currentState.data.drawerInputValue
     context.patchState({
       data: {
         ...currentState.data,
-        drawerInputValue: action.payload
+        selectItem: action.payload
       }
     });
     console.log("inputVal",inputVal);
 
   }
-
 
   constructor(injector: Injector) {
   }

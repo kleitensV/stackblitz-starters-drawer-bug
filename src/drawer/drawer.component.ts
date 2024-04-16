@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VudDrawerComponent, VudDrawerModule, VudDrawerRef, VudErrorTooltipModule, VudIconModule, VudSelectModule, VudSpinnerModule } from '@vismaux/ngx-vud';
+import { VudDrawerComponent, VudDrawerModule, VudDrawerRef, VudErrorTooltipModule, VudIconModule, VudSelectModule, VudSpinnerModule, VudTooltipModule } from '@vismaux/ngx-vud';
 import { FormsModule } from '@angular/forms';
 import { SubSink } from 'subsink';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, buffer } from 'rxjs';
 import { EmitterService } from '@ngxs-labs/emitter';
 import { DrawerStore } from './store/drawer-store';
 import { IDrawerState } from './store/drawer-state';
@@ -17,6 +17,7 @@ import { IDrawerState } from './store/drawer-state';
     VudSelectModule,
     VudIconModule,
     VudErrorTooltipModule,
+    VudTooltipModule,
     VudDrawerModule,
     CommonModule,
     VudSpinnerModule
@@ -28,6 +29,7 @@ export class DrawerComponent extends VudDrawerComponent implements OnDestroy, On
   public _subs = new SubSink();
   public drawerStore$ = new Observable<any>();
   public drawerInputValue="";
+  public item: string|null=null;
   public items=['item1','item2','item3'];
   constructor(private modalRef: VudDrawerRef<DrawerComponent>,
     private store: Store,
@@ -40,6 +42,7 @@ export class DrawerComponent extends VudDrawerComponent implements OnDestroy, On
   public ngOnInit(): void {
     this._subs.add(this.drawerStore$.subscribe((state: IDrawerState) => {
         this.drawerInputValue= state.data.drawerInputValue;
+        this.item=state.data.selectItem;
     }));
   }
 
@@ -51,7 +54,7 @@ export class DrawerComponent extends VudDrawerComponent implements OnDestroy, On
     this.emitter.action<string>(DrawerStore.updateDrawerInputValue).emit(event);
   }
   public onChangeSelect(event: any){
-
+    this.emitter.action<string>(DrawerStore.updateDrawerSelectValue).emit(event);
   }
 
 
