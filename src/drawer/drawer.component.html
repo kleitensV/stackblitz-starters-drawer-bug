@@ -8,14 +8,13 @@
     <div class="row">
       <div class="form-group col-md-12 mb-0" style="display: block;">
         <label>ForhandlingsUndeslag:</label>
-        <input type="text" class="form-control name-input-drawer" [ngModel]="drawerInputValue"
-          [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeDrawerInputValue($event)"
-          [vudErrorTooltip]="fieldRequiredError" required labelForId="template-name-select-drawer">
+        <input type="text" class="name-input-drawer" [ngModel]="drawerInputValue"
+          (ngModelChange)="onChangeDrawerInputValue($event)" labelForId="template-name-input-drawer"
+          [vudErrorTooltip]="fieldRequiredError" required>
       </div>
-
       <div class="form-group col-md-12 mb-0" style="display: block;">
         <label>select value:</label>
-        <vud-select [items]="items" class="ml-4 type-select" [ngModelOptions]="{standalone: true}"
+        <vud-select [items]="items" class="ml-4 type-select" labelForId="template-name-select-drawer"
           required [vudErrorTooltip]="fieldRequiredError" [ngModel]="item"
           (ngModelChange)="onChangeSelect($event)" appendTo="body"></vud-select>
       </div>

@@ -32,11 +32,17 @@ export class DrawerStore {
     let currentState = context.getState();
     let inputVal = currentState.data.drawerInputValue
 
-    context.setState(
-      produce(draft => {
-        draft.data.drawerInputValue = inputVal ;
-      })
-    );
+    // context.setState(
+    //   produce(draft => {
+    //     draft.data.drawerInputValue = inputVal ;
+    //   })
+    // );
+    context.patchState({
+      data: {
+        ...currentState.data,
+        drawerInputValue: action.payload
+      }
+    });
     console.log("inputVal",inputVal);
 
   }

@@ -2,6 +2,24 @@
 @use '@angular/material' as mat;
 @import '@vismaux/vud-icons/dist/css/vud-icons.min.css';
 @import '@angular/cdk/overlay-prebuilt.css';
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$mat-vud-theme: mat.define-light-theme((color: (primary: $my-primary,
+        accent: $my-accent,
+      ),
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
+
+@include mat.all-component-themes($mat-vud-theme);
+
+.mat-drawer.mat-drawer-side,
+.mat-drawer-container {
+  background-color: transparent;
+}
 
 .container{
     height: 300px;
