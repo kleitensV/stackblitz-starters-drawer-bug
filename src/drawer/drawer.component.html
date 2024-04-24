@@ -1,0 +1,29 @@
+<div class="drawer-header">
+    <h4 id="drawer-title">drawer title</h4>
+  </div>
+  <div id="drawer-content" class="drawer-body pb-8">
+    <vud-errors #fieldRequiredError>
+      <ng-template vudError="required">Field required</ng-template>
+    </vud-errors>
+    <div class="row">
+      <div class="form-group col-md-12 mb-0" style="display: block;">
+        <label>ForhandlingsUndeslag:</label>
+        <input type="text" class="form-control name-input-drawer" [ngModel]="drawerInputValue"
+          [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeDrawerInputValue($event)"
+          [vudErrorTooltip]="fieldRequiredError" required labelForId="template-name-select-drawer">
+      </div>
+
+      <div class="form-group col-md-12 mb-0" style="display: block;">
+        <label>select value:</label>
+        <vud-select [items]="items" class="ml-4 type-select" [ngModelOptions]="{standalone: true}"
+          required [vudErrorTooltip]="fieldRequiredError" [ngModel]="item"
+          (ngModelChange)="onChangeSelect($event)" appendTo="body"></vud-select>
+      </div>
+    </div>
+    
+  </div>
+  <div class="drawer-footer">
+    <button type="button" class="btn btn-default" (click)="closeDrawer()">
+      <span>Close</span>
+    </button>
+  </div>
